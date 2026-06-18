@@ -1,0 +1,29 @@
+# Generated problem directories
+leetcode/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Config (may contain paths; credentials are in keyring, not here)
+.leet2local.toml
+
+# Temp harness files
+/tmp/
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

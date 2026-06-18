@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// ---- SOLUTION CODE ----
+{{ solution_code }}
+
+// ---- JSON helpers (minimal) ----
+string dumpJson(int v) { return to_string(v); }
+string dumpJson(long long v) { return to_string(v); }
+string dumpJson(double v) { return to_string(v); }
+string dumpJson(bool v) { return v ? "true" : "false"; }
+string dumpJson(const string& v) { return "\"" + v + "\""; }
+template<typename T>
+string dumpJson(const vector<T>& v) {
+    string s = "[";
+    for (size_t i = 0; i < v.size(); i++) {
+        if (i) s += ",";
+        s += dumpJson(v[i]);
+    }
+    return s + "]";
+}
+
+// ---- TEST HARNESS ----
+int main() {
+    Solution _sol;
+    {{ harness_body }}
+    return 0;
+}

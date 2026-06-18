@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "leet2local"
+version = "0.1.0"
+description = "Solve LeetCode problems in your local IDE"
+requires-python = ">=3.11"
+dependencies = [
+    "typer[all]>=0.12",
+    "httpx>=0.28",
+    "tenacity>=8.3",
+    "beautifulsoup4>=4.12",
+    "markdownify>=0.13",
+    "keyring>=25.0",
+    "pydantic>=2.7",
+    "jinja2>=3.1",
+    "tomli-w>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+    "pytest-httpx>=0.30",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+lc = "leet2local.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["leet2local"]
+
+[tool.hatch.build.targets.wheel.sources]
+"templates" = "leet2local/templates"
+
+[tool.pytest.ini_options]
+filterwarnings = ["ignore::pytest.PytestCollectionWarning"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

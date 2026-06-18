@@ -1,0 +1,84 @@
+from __future__ import annotations
+import json
+import sys
+from typing import Optional, List, Dict, Tuple, Set, Any
+
+# ---- LeetCode helper types ----
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+    def __repr__(self):
+        vals = []
+        cur = self
+        seen = set()
+        while cur and id(cur) not in seen:
+            seen.add(id(cur))
+            vals.append(cur.val)
+            cur = cur.next
+        return f"ListNode({vals})"
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def _list_to_linked(lst):
+    if not lst:
+        return None
+    head = ListNode(lst[0])
+    cur = head
+    for v in lst[1:]:
+        cur.next = ListNode(v)
+        cur = cur.next
+    return head
+
+def _linked_to_list(node):
+    vals = []
+    seen = set()
+    while node and id(node) not in seen:
+        seen.add(id(node))
+        vals.append(node.val)
+        node = node.next
+    return vals
+
+def _list_to_tree(lst):
+    if not lst:
+        return None
+    root = TreeNode(lst[0])
+    queue = [root]
+    i = 1
+    while queue and i < len(lst):
+        node = queue.pop(0)
+        if i < len(lst) and lst[i] is not None:
+            node.left = TreeNode(lst[i])
+            queue.append(node.left)
+        i += 1
+        if i < len(lst) and lst[i] is not None:
+            node.right = TreeNode(lst[i])
+            queue.append(node.right)
+        i += 1
+    return root
+
+# ---- SOLUTION CODE ----
+{{ solution_code }}
+
+# ---- TEST HARNESS ----
+_test_cases = json.loads({{ test_cases_json | tojson }})
+_sol = Solution()
+
+for _i, _tc in enumerate(_test_cases):
+    try:
+        _result = _sol.{{ method_name }}({{ call_args }})
+        # Normalize ListNode results to list for comparison
+        if isinstance(_result, ListNode):
+            _result = _linked_to_list(_result)
+        _expected = _tc["expected"]
+        _sep = (',', ':')
+        if _result == _expected:
+            print(f"LEET_PASS {_i} got={json.dumps(_result, separators=_sep)} expected={json.dumps(_expected, separators=_sep)}")
+        else:
+            print(f"LEET_FAIL {_i} got={json.dumps(_result, separators=_sep)} expected={json.dumps(_expected, separators=_sep)}")
+    except Exception as _e:
+        print(f"LEET_ERROR {_i} {type(_e).__name__}: {_e}")
