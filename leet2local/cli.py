@@ -31,10 +31,27 @@ console = Console()
 # ---------------------------------------------------------------------------
 
 @app.command()
-def login():
-    """Store your LeetCode session cookies securely."""
+def login(
+    username: Optional[str] = typer.Option(
+        None, "--username", "-u",
+        help="LeetCode username or email. Omit to use the cookie-paste method instead.",
+    ),
+    password: Optional[str] = typer.Option(
+        None, "--password", "-p",
+        help="Password. If --username is given but --password is omitted, you will be prompted.",
+        hide_input=True,
+    ),
+):
+    """Log in to LeetCode.
+
+    \b
+    Two methods are supported:
+      lc login                          # paste cookies from browser DevTools
+      lc login -u you@email.com        # username + password (prompts for password)
+      lc login -u you@email.com -p pw  # fully non-interactive
+    """
     from .auth import run_login_flow
-    run_login_flow()
+    run_login_flow(username=username, password=password)
 
 
 # ---------------------------------------------------------------------------

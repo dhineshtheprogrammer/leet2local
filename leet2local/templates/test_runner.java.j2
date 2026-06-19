@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class LeetRunner {
+    // ---- SOLUTION CODE (inlined as static inner class) ----
+    {{ solution_code_inner }}
+
+    // ---- TEST HARNESS ----
+    public static void main(String[] args) {
+        Solution _sol = new Solution();
+        {{ harness_body }}
+    }
+
+    static String toJson(Object obj) {
+        if (obj == null) return "null";
+        if (obj instanceof Boolean || obj instanceof Integer || obj instanceof Long) return obj.toString();
+        if (obj instanceof int[]) {
+            int[] arr = (int[]) obj;
+            StringBuilder sb = new StringBuilder("[");
+            for (int i = 0; i < arr.length; i++) { if (i > 0) sb.append(","); sb.append(arr[i]); }
+            return sb.append("]").toString();
+        }
+        if (obj instanceof List) {
+            List<?> list = (List<?>) obj;
+            StringBuilder sb = new StringBuilder("[");
+            for (int i = 0; i < list.size(); i++) { if (i > 0) sb.append(","); sb.append(toJson(list.get(i))); }
+            return sb.append("]").toString();
+        }
+        return "\"" + obj.toString() + "\"";
+    }
+}

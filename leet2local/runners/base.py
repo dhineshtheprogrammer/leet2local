@@ -4,9 +4,14 @@ import shutil
 import subprocess
 import tempfile
 from abc import ABC, abstractmethod
+from importlib.resources import files as _res_files
 from pathlib import Path
 
 from ..models import TestCase, TestResult
+
+
+def _load_template(name: str) -> str:
+    return (_res_files("leet2local.templates") / name).read_text(encoding="utf-8")
 
 
 def _format_input(tc: TestCase) -> str:

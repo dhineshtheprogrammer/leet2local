@@ -1,5 +1,10 @@
 # Leet2Local
 
+[![PyPI](https://img.shields.io/pypi/v/leet2local)](https://pypi.org/project/leet2local/)
+[![Python](https://img.shields.io/pypi/pyversions/leet2local)](https://pypi.org/project/leet2local/)
+[![CI](https://github.com/dhineshtheprogrammer/leet2local/actions/workflows/ci.yml/badge.svg)](https://github.com/dhineshtheprogrammer/leet2local/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A CLI tool that brings LeetCode problems into your local IDE. Fetch problem descriptions, solve in your editor, run tests locally, and submit directly to LeetCode — all from the terminal.
 
 ```
@@ -32,7 +37,7 @@ pip install leet2local
 Or install from source:
 
 ```bash
-git clone https://github.com/yourusername/Leet2Local.git
+git clone https://github.com/dhineshtheprogrammer/leet2local.git
 cd Leet2Local
 pip install -e .
 ```

@@ -1,0 +1,19 @@
+// ---- SOLUTION CODE ----
+{{ solution_code }}
+
+// ---- TEST HARNESS ----
+const _testCases = {{ test_cases_json }};
+
+_testCases.forEach((_tc, _i) => {
+  try {
+    const _result = {{ method_name }}({{ call_args }});
+    const _pass = JSON.stringify(_result) === JSON.stringify(_tc.expected);
+    if (_pass) {
+      console.log(`LEET_PASS ${_i}`);
+    } else {
+      console.log(`LEET_FAIL ${_i} got=${JSON.stringify(_result)} expected=${JSON.stringify(_tc.expected)}`);
+    }
+  } catch (_e) {
+    console.log(`LEET_ERROR ${_i} ${_e.message || String(_e)}`);
+  }
+});

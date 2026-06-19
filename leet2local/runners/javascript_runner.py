@@ -5,13 +5,11 @@ import re
 import tempfile
 from pathlib import Path
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import BaseLoader, Environment
 
 from ..config import load_config
 from ..models import TestCase, TestResult
-from .base import Runner, require_runtime
-
-_TEMPLATES_DIR = Path(__file__).parent.parent.parent / "templates"
+from .base import Runner, _load_template, require_runtime
 
 
 def _infer_method_name(solution_code: str) -> str:
@@ -42,8 +40,8 @@ class JavaScriptRunner(Runner):
             for tc in test_cases
         ]
 
-        env = Environment(loader=FileSystemLoader(str(_TEMPLATES_DIR)))
-        template = env.get_template("test_runner.js.j2")
+        env = Environment(loader=BaseLoader())
+        template = env.from_string(_load_template("test_runner.js.j2"))
         harness_code = template.render(
             solution_code=solution_code,
             test_cases_json=json.dumps(tc_data),
