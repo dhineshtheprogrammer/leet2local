@@ -1,5 +1,5 @@
-from leet2local.models import TestCase
 from leet2local.runners.python_runner import PythonRunner
+from leet2local.models import TestCase
 
 
 SOLUTION_TWO_SUM = """\
