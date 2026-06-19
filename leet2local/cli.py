@@ -67,7 +67,7 @@ def fetch(
         help="Language: python | javascript | cpp | java",
     ),
 ):
-    """Fetch the given LeetCode problem and create local files."""
+    """Fetch a LeetCode problem and create local files."""
     from .config import load_config
     from .fetcher import fetch_problem
 
