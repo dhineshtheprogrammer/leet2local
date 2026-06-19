@@ -1,7 +1,6 @@
 from leet2local.models import TestCase
 from leet2local.runners.python_runner import PythonRunner
 
-
 SOLUTION_TWO_SUM = """\
 from typing import List
 
