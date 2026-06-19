@@ -118,7 +118,6 @@ def login_with_credentials(username: str, password: str) -> None:
 def run_login_flow(username: str | None = None, password: str | None = None) -> None:
     """Interactive login. Uses credential flow if username provided, cookie flow otherwise."""
     from rich.console import Console
-    from rich.panel import Panel
 
     console = Console(legacy_windows=False)
 

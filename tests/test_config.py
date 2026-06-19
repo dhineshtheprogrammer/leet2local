@@ -1,9 +1,4 @@
-import tempfile
-from pathlib import Path
-
-import pytest
-
-from leet2local.config import Config, save_config, load_config, set_config_value
+from leet2local.config import Config, load_config, save_config, set_config_value
 
 
 def test_default_config():

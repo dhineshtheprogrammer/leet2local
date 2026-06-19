@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
-from typing import Optional
 
 import typer
 from rich.console import Console
@@ -32,11 +31,11 @@ console = Console()
 
 @app.command()
 def login(
-    username: Optional[str] = typer.Option(
+    username: str | None = typer.Option(
         None, "--username", "-u",
         help="LeetCode username or email. Omit to use the cookie-paste method instead.",
     ),
-    password: Optional[str] = typer.Option(
+    password: str | None = typer.Option(
         None, "--password", "-p",
         help="Password. If --username is given but --password is omitted, you will be prompted.",
         hide_input=True,
@@ -61,7 +60,7 @@ def login(
 @app.command()
 def fetch(
     number: int = typer.Argument(..., help="LeetCode problem number (e.g. 1, 42)"),
-    lang: Optional[str] = typer.Option(
+    lang: str | None = typer.Option(
         None,
         "--lang",
         "-l",
@@ -266,7 +265,7 @@ app.add_typer(config_app, name="config")
 @config_app.callback(invoke_without_command=True)
 def config_show(
     ctx: typer.Context,
-    set_val: Optional[str] = typer.Option(
+    set_val: str | None = typer.Option(
         None, "--set", help="Set a config value, e.g. settings.default_language=javascript"
     ),
     vscode_init: bool = typer.Option(False, "--vscode-init", help="Generate .vscode/tasks.json"),
@@ -293,9 +292,9 @@ def config_show(
         _generate_vscode_tasks()
         return
 
-    from .config import load_config
-    import tomllib, io
     import tomli_w
+
+    from .config import load_config
 
     cfg = load_config()
     raw = {

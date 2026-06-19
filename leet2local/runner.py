@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .config import load_config
 from .fetcher import find_problem_dir, load_meta
 from .models import TestCase, TestResult
 from .runners.base import Runner

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import re
-import tempfile
 from pathlib import Path
 
 from jinja2 import BaseLoader, Environment
